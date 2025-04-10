@@ -22,7 +22,7 @@ public class ToolCreation implements ItemCreationStrategy
     public Item fromDefaults()
     {
         // Return a **Default** Tool
-        return null;
+        return new Tool();
     }
 
     @Override
@@ -43,7 +43,11 @@ public class ToolCreation implements ItemCreationStrategy
 
         tool.setName(tokens[0]);
         // Set the remaining attributes
-
+        tool.setMaterial(tokens[1]); //material
+        tool.setDurability(Integer.parseInt(tokens[2]));//durability
+        //speed 
+        //modifier 
+        //modiefier level 
         return tool;
     }
 
