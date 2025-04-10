@@ -1,7 +1,6 @@
 package edu.odu.cs.cs330.items.creation;
 
 import edu.odu.cs.cs330.items.Item;
-import edu.odu.cs.cs330.items.Consumable;
 
 
 @SuppressWarnings({
@@ -29,7 +28,7 @@ public class ConsumableCreation implements ItemCreationStrategy
     public int requiredNumberOfValues()
     {
         // Replace the return value;
-        return 0;
+        return 3;
     }
 
     @SuppressWarnings({

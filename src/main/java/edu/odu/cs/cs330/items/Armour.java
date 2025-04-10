@@ -1,7 +1,5 @@
 package edu.odu.cs.cs330.items;
 
-import java.util.Objects;
-
 /**
  * This class represents one piece of armour--as found in most video games.
  * This includes boots and helmets.
@@ -75,7 +73,13 @@ public class Armour extends Equippable implements Item
     public Item clone()
     {
         Armour cpy = new Armour();
-
+        cpy.setName(this.getName());
+        cpy.setDurability(this.getDurability());
+        cpy.setDefense(this.getDefense());
+        cpy.setMaterial(this.getMaterial());
+        cpy.setModifier(this.getModifier());
+        cpy.setModifierLevel(this.getModifierLevel());
+        cpy.setElement(this.getElement());
         return cpy;
     }
 
@@ -93,7 +97,17 @@ public class Armour extends Equippable implements Item
         }
 
         Armour rhsItem = (Armour) rhs;
+        
+        if (this.getName().equals(rhsItem.getName()) 
+            && this.getMaterial().equals(rhsItem.getMaterial())
+            && this.getModifier().equals(rhsItem.getModifier())
+            && this.getModifierLevel() == rhsItem.getModifierLevel()
+            && this.getElement().equals(rhsItem.getElement())
+            && this.getDefense() == rhsItem.getDefense()) {
 
+
+            return true;
+        }
         return false;
     }
 
@@ -104,7 +118,14 @@ public class Armour extends Equippable implements Item
     @Override
     public int hashCode()
     {
-        return -1;
+        int hash = this.getName().hashCode();
+        hash += 2*this.getMaterial().hashCode();
+        hash+=4*this.getModifier().hashCode(); 
+        hash+=8*this.getModifierLevel();
+        hash+=32*this.getElement().hashCode(); 
+        hash+=64*this.getDefense(); 
+        return hash;
+
     }
 
     /**
@@ -113,10 +134,19 @@ public class Armour extends Equippable implements Item
     @Override
     public String toString()
     {
-        return "Use the provided format string";
+        return String.format(
+           FMT_STR,
+           this.getName(), 
+           this.getDurability(),
+           this.getDefense(), 
+           this.getMaterial(),
+           this.getModifier(), 
+           this.getModifierLevel(), 
+           this.getElement()
+        );
+
     }
+
 }
-
-
 
 
