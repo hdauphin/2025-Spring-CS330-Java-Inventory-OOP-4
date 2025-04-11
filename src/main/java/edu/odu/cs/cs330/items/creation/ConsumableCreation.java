@@ -1,5 +1,6 @@
 package edu.odu.cs.cs330.items.creation;
 
+import edu.odu.cs.cs330.items.Consumable;
 import edu.odu.cs.cs330.items.Item;
 
 
@@ -21,7 +22,7 @@ public class ConsumableCreation implements ItemCreationStrategy
     public Item fromDefaults()
     {
         // Return a **Default** Consumable
-        return null;
+        return new Consumable();
     }
 
     @Override
@@ -38,13 +39,30 @@ public class ConsumableCreation implements ItemCreationStrategy
     @Override
     public Item fromTokens(final String... tokens)
     {
-        return null;
+        Consumable food = new Consumable(); 
+
+        food.setName(tokens[0]);
+        food.setEffect(tokens[1]);
+        food.setNumberOfUses(Integer.parseInt(tokens[2]));
+
+        return food; 
     }
 
     @Override
     public Item fromExisting(final Item original)
     {
         // Return a clone of original
-        return null;
+        if (original == null || !(original instanceof Consumable)){
+            return null; 
+        }
+
+        Consumable copy = new Consumable(); 
+        Consumable orig = (Consumable) original; 
+
+        copy.setName(orig.getName());
+        copy.setEffect(orig.getEffect());
+        copy.setNumberOfUses(orig.getNumberOfUses());
+
+        return copy; 
     }
 }

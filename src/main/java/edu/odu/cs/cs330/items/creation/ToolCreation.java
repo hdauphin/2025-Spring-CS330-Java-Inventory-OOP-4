@@ -45,9 +45,10 @@ public class ToolCreation implements ItemCreationStrategy
         // Set the remaining attributes
         tool.setMaterial(tokens[1]); //material
         tool.setDurability(Integer.parseInt(tokens[2]));//durability
-        //speed 
-        //modifier 
-        //modiefier level 
+        tool.setSpeed(Integer.parseInt(tokens[3]));//speed 
+        tool.setModifier(tokens[4]);//modifier 
+        tool.setModifierLevel(Integer.parseInt(tokens[5]));//modiefier level 
+        
         return tool;
     }
 
@@ -55,6 +56,20 @@ public class ToolCreation implements ItemCreationStrategy
     public Item fromExisting(final Item original)
     {
         // Return a clone of original
-        return null;
+        if (original == null || !(original instanceof Tool)){
+            return null; 
+        }
+
+        Tool copy = new Tool(); 
+        Tool orig = (Tool) original; 
+
+        copy.setName(orig.getName());
+        copy.setDurability(orig.getDurability());
+        copy.setMaterial(orig.getMaterial());
+        copy.setSpeed(orig.getSpeed());
+        copy.setModifier(orig.getModifier());
+        copy.setModifierLevel(orig.getModifierLevel());
+
+        return copy; 
     }
 }
